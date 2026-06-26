@@ -1,0 +1,128 @@
+@model KargoTakipSistemi1.Models.DurumKaydi
+
+@{
+    ViewData["Title"] = "Durum Kaydý Sil";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1 text-danger">Durum Kaydý Sil</h2>
+
+            <p class="text-muted mb-0">
+                Bu iþlem geri alýnamaz. Kaydý silmek istediðinizden emin misiniz?
+            </p>
+        </div>
+
+        <a asp-action="Index" class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box delete-header-box mb-4">
+
+            <span class="detail-status-label delete-label">
+                Silme Ýþlemi
+            </span>
+
+            <h4>@Model.Durum</h4>
+
+            <p>
+                Takip No:
+                <strong>@Model.Kargo?.TakipNo</strong>
+            </p>
+
+        </div>
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <div class="tracking-detail-box">
+                    <span>Takip No</span>
+                    <strong>@Model.Kargo?.TakipNo</strong>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="tracking-detail-box">
+                    <span>Durum</span>
+                    <strong>@Model.Durum</strong>
+                </div>
+            </div>
+
+
+        </div>
+
+        <form asp-action="Delete"
+              class="mt-4 d-flex gap-2"
+              id="deleteForm">
+
+            <input type="hidden" asp-for="Id" />
+
+            <button type="button"
+                    class="soft-action-btn delete border-0"
+                    onclick="openDeleteModal()">
+                Evet, Sil
+            </button>
+
+            <a asp-action="Index"
+               class="soft-action-btn detail">
+                Vazgeç
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div id="deleteModal" class="custom-modal-overlay">
+
+    <div class="custom-modal-box">
+
+        <div class="custom-modal-icon">
+            !
+        </div>
+
+        <h4>Silme Ýþlemi</h4>
+
+        <p>
+            Bu durum kaydýný silmek istediðinize emin misiniz?
+        </p>
+
+        <div class="d-flex justify-content-center gap-2 mt-4">
+
+            <button type="button"
+                    class="soft-action-btn delete border-0"
+                    onclick="submitDeleteForm()">
+                Evet, Sil
+            </button>
+
+            <button type="button"
+                    class="soft-action-btn detail border-0"
+                    onclick="closeDeleteModal()">
+                Vazgeç
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function openDeleteModal() {
+        document.getElementById("deleteModal").classList.add("show");
+    }
+
+    function closeDeleteModal() {
+        document.getElementById("deleteModal").classList.remove("show");
+    }
+
+    function submitDeleteForm() {
+        document.getElementById("deleteForm").submit();
+    }
+</script>

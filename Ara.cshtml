@@ -1,0 +1,79 @@
+@model KargoTakipSistemi1.Models.DurumKaydi
+
+@{
+    ViewData["Title"] = "Durum Kaydý Düzenle";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1">Durum Kaydý Düzenle</h2>
+            <p class="text-muted mb-0">Seçili kargonun hareket bilgisini güncelleyin.</p>
+        </div>
+        <a asp-action="Index" class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box mb-4">
+            <span class="detail-status-label">Düzenleme Formu</span>
+            <h4>@Model.Durum</h4>
+            <p>Bu ekrandan kargo durum kaydýný güncelleyebilirsiniz.</p>
+        </div>
+
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label asp-for="KargoId" class="form-label">Kargo</label>
+                    <select asp-for="KargoId" class="form-select" asp-items="ViewBag.KargoId">
+                        <option value="">Kargo seçiniz</option>
+                    </select>
+                    <span asp-validation-for="KargoId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Durum" class="form-label">Durum</label>
+                    <select asp-for="Durum" class="form-select">
+                        <option value="">Durum seçiniz</option>
+                        <option value="Kargo Alýndý" selected="@(Model.Durum == "Kargo Alýndý")">Kargo Alýndý</option>
+                        <option value="Çýkýþ Þubesinde" selected="@(Model.Durum == "Çýkýþ Þubesinde")">Çýkýþ Þubesinde</option>
+                        <option value="Transfer Merkezinde" selected="@(Model.Durum == "Transfer Merkezinde")">Transfer Merkezinde</option>
+                        <option value="Varýþ Þubesinde" selected="@(Model.Durum == "Varýþ Þubesinde")">Varýþ Þubesinde</option>
+                        <option value="Daðýtýma Çýktý" selected="@(Model.Durum == "Daðýtýma Çýktý")">Daðýtýma Çýktý</option>
+                        <option value="Teslim Edildi" selected="@(Model.Durum == "Teslim Edildi")">Teslim Edildi</option>
+                    </select>
+                    <span asp-validation-for="Durum" class="text-danger"></span>
+                </div>
+
+               
+
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="soft-action-btn detail border-0">
+                    Güncelle
+                </button>
+
+                <a asp-action="Index" class="soft-action-btn back-btn">
+                    Vazgeç
+                </a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

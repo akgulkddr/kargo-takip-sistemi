@@ -1,0 +1,140 @@
+@model KargoTakipSistemi1.Models.Personel
+
+@{
+    ViewData["Title"] = "Personel Düzenle";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="page-title mb-1">Personel Düzenle</h2>
+
+            <p class="text-muted mb-0">
+                Personel bilgilerini güncelleyebilirsiniz.
+            </p>
+        </div>
+
+        <a asp-action="Index"
+           class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box mb-4">
+
+            <span class="detail-status-label">
+                Düzenleme Formu
+            </span>
+
+            <h4>@Model.AdSoyad</h4>
+
+            <p>
+                Personel bilgilerini güncelleyebilirsiniz.
+            </p>
+
+        </div>
+
+        <form asp-action="Edit">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <label asp-for="AdSoyad" class="form-label">
+                        Ad Soyad
+                    </label>
+
+                    <input asp-for="AdSoyad" class="form-control" />
+
+                    <span asp-validation-for="AdSoyad" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label asp-for="Gorev" class="form-label">
+                        Görev
+                    </label>
+
+                    <select asp-for="Gorev"
+                            class="form-select">
+
+                        <option value="">Görev seçiniz</option>
+
+                        <option value="Þube Müdürü">Þube Müdürü</option>
+                        <option value="Kargo Daðýtým Personeli">Kargo Daðýtým Personeli</option>
+                        <option value="Kargo Kabul Personeli">Kargo Kabul Personeli</option>
+                        <option value="Müþteri Hizmetleri">Müþteri Hizmetleri</option>
+                        <option value="Operasyon Sorumlusu">Operasyon Sorumlusu</option>
+                        <option value="Depo Personeli">Depo Personeli</option>
+                        <option value="Kurye">Kurye</option>
+
+                    </select>
+
+                    <span asp-validation-for="Gorev" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label asp-for="Telefon" class="form-label">
+                        Telefon
+                    </label>
+
+                    <input asp-for="Telefon" class="form-control" />
+
+                    <span asp-validation-for="Telefon" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label asp-for="SubeId" class="form-label">
+                        Þube
+                    </label>
+
+                    <select asp-for="SubeId"
+                            class="form-select"
+                            asp-items="ViewBag.SubeId">
+                    </select>
+
+                    <span asp-validation-for="SubeId" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+
+                <button type="submit"
+                        class="soft-action-btn back-btn border-0">
+                    Güncelle
+                </button>
+
+                <a asp-action="Index"
+                   class="soft-action-btn detail">
+                    Vazgeç
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

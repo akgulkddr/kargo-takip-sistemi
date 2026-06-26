@@ -1,0 +1,71 @@
+@model KargoTakipSistemi1.Models.DurumKaydi
+
+@{
+    ViewData["Title"] = "Yeni Durum Ekle";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1">Yeni Durum Ekle</h2>
+            <p class="text-muted mb-0">Kargoya yeni hareket/durum kaydý ekleyin.</p>
+        </div>
+
+        <a asp-action="Index" class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+    </div>
+
+    <div class="content-card">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label asp-for="KargoId" class="form-label">Kargo</label>
+                    <select asp-for="KargoId" class="form-select" asp-items="ViewBag.KargoId">
+                        <option value="">Kargo seçiniz</option>
+                    </select>
+                    <span asp-validation-for="KargoId" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Durum" class="form-label">Durum</label>
+                    <select asp-for="Durum" class="form-select">
+                        <option value="">Durum seçiniz</option>
+                        <option value="Kargo Alýndý">Kargo Alýndý</option>
+                        <option value="Çýkýþ Þubesinde">Çýkýþ Þubesinde</option>
+                        <option value="Transfer Merkezinde">Transfer Merkezinde</option>
+                        <option value="Varýþ Þubesinde">Varýþ Þubesinde</option>
+                        <option value="Daðýtýma Çýktý">Daðýtýma Çýktý</option>
+                        <option value="Teslim Edildi">Teslim Edildi</option>
+                    </select>
+                    <span asp-validation-for="Durum" class="text-danger"></span>
+                </div>
+
+                
+
+
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="soft-action-btn detail border-0">
+                    Kaydet
+                </button>
+
+                <a asp-action="Index" class="soft-action-btn delete">
+                    Vazgeç
+                </a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

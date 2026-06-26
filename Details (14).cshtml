@@ -1,0 +1,84 @@
+@model KargoTakipSistemi1.Models.Musteri
+
+@{
+    ViewData["Title"] = "Müþteri Detayý";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="page-title mb-1">Müþteri Detayý</h2>
+
+            <p class="text-muted mb-0">
+                Müþteri bilgilerini görüntüleyebilirsiniz.
+            </p>
+        </div>
+
+        <a asp-action="Index"
+           class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box mb-4">
+
+            <span class="detail-status-label">
+                Müþteri Bilgisi
+            </span>
+
+            <h4>@Model.AdSoyad</h4>
+
+            <p>
+                Müþterinin sistemde kayýtlý detay bilgileri.
+            </p>
+
+        </div>
+
+        <div class="cargo-detail-grid">
+
+            <div>
+                <span>Ad Soyad</span>
+                <strong>@Model.AdSoyad</strong>
+            </div>
+
+            <div>
+                <span>Telefon</span>
+                <strong>@Model.Telefon</strong>
+            </div>
+
+            <div>
+                <span>Email</span>
+                <strong>@Model.Email</strong>
+            </div>
+
+            <div>
+                <span>Adres</span>
+                <strong>@Model.Adres</strong>
+            </div>
+
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model?.Id"
+               class="soft-action-btn back-btn">
+                Düzenle
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@Model?.Id"
+               class="soft-action-btn delete">
+                Sil
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

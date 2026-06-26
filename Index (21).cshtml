@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Kargo Takip Sistemi</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <header class="yk-header">
+
+        <div class="yk-topbar">
+            <div class="yk-container yk-topbar-inner">
+                @*
+                <div class="yk-social">
+                    <span>f</span>
+                    <span>x</span>
+                    <span>in</span>
+                    <span>▶</span>
+                </div>
+                *@
+            </div>
+        </div>
+
+        <div class="yk-mainbar">
+            <div class="yk-container yk-main-content">
+
+                <a class="yk-logo" asp-controller="Home" asp-action="Index">
+                    <div class="yk-logo-box">
+                        <span class="yk-logo-icon">📦</span>
+                        <span class="yk-logo-text">FLORIS KARGO</span>
+                    </div>
+                </a>
+
+                <nav class="yk-nav">
+                    <a asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                    <a asp-controller="Kargolar" asp-action="Index">Kargolar</a>
+                    <a asp-controller="Musteriler" asp-action="Index">Müşteriler</a>
+                    <a asp-controller="Subeler" asp-action="Index">Şubeler</a>
+                    <a asp-controller="Personeller" asp-action="Index">Personeller</a>
+                    <a asp-controller="DurumKayitlari" asp-action="Index">Durum Kayıtları</a>
+                </nav>
+
+                <div class="yk-actions">
+                    <form asp-controller="Home"
+                          asp-action="Ara"
+                          method="get"
+                          class="quick-search-form">
+
+                        <div class="quick-search-wrapper">
+
+                            <input type="text"
+                                   name="arama"
+                                   class="quick-search-input"
+                                   placeholder="Hızlı Arama..." />
+
+                            <button type="submit"
+                                    class="quick-search-icon-btn">
+
+                                🔍
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                   @*  @if (Context.Session.GetString("KullaniciAd") != null)
+                    {
+                        <div class="yk-login-dropdown">
+                            <button class="yk-login-btn" type="button">
+                                @Context.Session.GetString("KullaniciAd") ▾
+                            </button>
+
+                            <div class="yk-login-menu">
+                                <a asp-controller="Auth" asp-action="Logout">
+                                    Çıkış Yap
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <button type="button"
+                                class="yk-login-btn"
+                                onclick="openLoginModal('Üye Girişi')">
+                            Üye Girişi
+                        </button>
+                    } *@
+
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="yk-footer"
+            data-tr="© 2026 - Kargo Takip Sistemi"
+            data-en="© 2026 - Cargo Tracking System">
+        &copy; 2026 - Kargo Takip Sistemi
+    </footer>
+
+    @if (TempData["BasariMesaji"] != null)
+    {
+        <div class="custom-modal-overlay show" id="successModal">
+
+            <div class="custom-modal-box">
+
+                <div class="custom-modal-icon success-icon">
+                    ✓
+                </div>
+
+                <h4>İşlem Başarılı</h4>
+
+                <p class="mb-4">
+                    @TempData["BasariMesaji"]
+                </p>
+
+                <button type="button"
+                        class="soft-action-btn detail border-0"
+                        onclick="closeSuccessModal()">
+                    Tamam
+                </button>
+
+            </div>
+
+        </div>
+    }
+
+   @*  <!-- LOGIN MODAL -->
+    <div class="custom-modal-overlay" id="loginModal">
+
+        <div class="custom-modal-box">
+
+            <div class="custom-modal-icon">
+                👤
+            </div>
+
+            <h4 id="loginModalTitle">
+                Giriş Yap
+            </h4>
+
+            <p class="mb-4">
+                Hesabınıza giriş yapmak için bilgilerinizi girin.
+            </p>
+
+            <form asp-controller="Auth"
+                  asp-action="Login"
+                  method="post">
+
+                <div class="mb-3 text-start">
+                    <label class="form-label">E-Posta</label>
+
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="ornek@mail.com"
+                           required />
+                </div>
+
+                <div class="mb-4 text-start">
+                    <label class="form-label">Şifre</label>
+
+                    <input type="password"
+                           name="sifre"
+                           class="form-control"
+                           placeholder="Şifrenizi girin"
+                           required />
+                </div>
+
+                <div class="d-flex justify-content-center gap-2">
+
+                    <button type="submit"
+                            class="soft-action-btn detail border-0">
+                        Giriş Yap
+                    </button>
+
+                    <button type="button"
+                            class="soft-action-btn delete border-0"
+                            onclick="closeLoginModal()">
+                        Vazgeç
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div> *@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+   @*  <script>
+        function openLoginModal(title) {
+            document.getElementById("loginModal").classList.add("show");
+            document.getElementById("loginModalTitle").innerText = title;
+        }
+
+        function closeLoginModal() {
+            document.getElementById("loginModal").classList.remove("show");
+        }
+    </script> *@
+
+    <script>
+        function closeSuccessModal() {
+            document.getElementById("successModal").classList.remove("show");
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

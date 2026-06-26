@@ -1,0 +1,164 @@
+﻿@using KargoTakipSistemi1.Models
+
+@{
+    ViewData["Title"] = "Arama Sonuçları";
+
+    var kargolar = ViewBag.Kargolar as List<Kargo> ?? new List<Kargo>();
+    var musteriler = ViewBag.Musteriler as List<Musteri> ?? new List<Musteri>();
+    var personeller = ViewBag.Personeller as List<Personel> ?? new List<Personel>();
+    var subeler = ViewBag.Subeler as List<Sube> ?? new List<Sube>();
+}
+
+<div class="container mt-4">
+
+    <div class="content-card mb-4">
+        <h2 class="page-title mb-2">Arama Sonuçları</h2>
+        <p class="text-muted mb-0">
+            "@ViewBag.Arama" için bulunan sonuçlar
+        </p>
+    </div>
+
+    @if (!kargolar.Any() && !musteriler.Any() && !personeller.Any() && !subeler.Any())
+    {
+        <div class="alert alert-warning content-card">
+            Sonuç bulunamadı.
+        </div>
+    }
+
+    @if (kargolar.Any())
+    {
+        <div class="content-card mb-4">
+            <h4 class="mb-3">📦 Kargolar</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Takip No</th>
+                            <th>Tür</th>
+                            <th>Ağırlık</th>
+                            <th>Gönderici</th>
+                            <th>Alıcı</th>
+                            <th>Çıkış Şubesi</th>
+                            <th>Varış Şubesi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in kargolar)
+                        {
+                            <tr>
+                                <td>@item.TakipNo</td>
+                                <td>@item.KargoTuru</td>
+                                <td>@item.Agirlik kg</td>
+                                <td>@item.Gonderici?.AdSoyad</td>
+                                <td>@item.Alici?.AdSoyad</td>
+                                <td>@item.CikisSube?.SubeAdi</td>
+                                <td>@item.VarisSube?.SubeAdi</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if (musteriler.Any())
+    {
+        <div class="content-card mb-4">
+            <h4 class="mb-3">👥 Müşteriler</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Ad Soyad</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                            <th>Adres</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in musteriler)
+                        {
+                            <tr>
+                                <td>@item.AdSoyad</td>
+                                <td>@item.Telefon</td>
+                                <td>@item.Email</td>
+                                <td>@item.Adres</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if (personeller.Any())
+    {
+        <div class="content-card mb-4">
+            <h4 class="mb-3">👤 Personeller</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Ad Soyad</th>
+                            <th>Görev</th>
+                            <th>Telefon</th>
+                            <th>Şube</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in personeller)
+                        {
+                            <tr>
+                                <td>@item.AdSoyad</td>
+                                <td>@item.Gorev</td>
+                                <td>@item.Telefon</td>
+                                <td>@item.Sube?.SubeAdi</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if (subeler.Any())
+    {
+        <div class="content-card mb-4">
+            <h4 class="mb-3">🏢 Şubeler</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Şube Adı</th>
+                            <th>Şehir</th>
+                            <th>İlçe</th>
+                            <th>Adres</th>
+                            <th>Telefon</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in subeler)
+                        {
+                            <tr>
+                                <td>@item.SubeAdi</td>
+                                <td>@item.Sehir</td>
+                                <td>@item.Ilce</td>
+                                <td>@item.Adres</td>
+                                <td>@item.Telefon</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+</div>

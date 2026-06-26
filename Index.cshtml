@@ -1,0 +1,61 @@
+@model KargoTakipSistemi1.Models.DurumKaydi
+
+@{
+    ViewData["Title"] = "Durum Kaydý Detayý";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1">Durum Kaydý Detayý</h2>
+            <p class="text-muted mb-0">Seçili kargo hareket kaydýnýn detaylarý</p>
+        </div>
+        <a asp-action="Index" class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box mb-4">
+            <span class="detail-status-label">Durum Bilgisi</span>
+            <h4>@Model.Durum</h4>
+            <p>Takip No: <strong>@Model.Kargo?.TakipNo</strong></p>
+        </div>
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <div class="tracking-detail-box">
+                    <span>Takip No</span>
+                    <strong>@Model.Kargo?.TakipNo</strong>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="tracking-detail-box">
+                    <span>Durum</span>
+                    <strong>@Model.Durum</strong>
+                </div>
+            </div>
+
+           
+
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="soft-action-btn edit">
+                Düzenle
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@Model.Id"
+               class="soft-action-btn delete">
+                Sil
+            </a>
+        </div>
+
+    </div>
+
+</div>

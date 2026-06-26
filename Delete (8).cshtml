@@ -1,0 +1,191 @@
+@model KargoTakipSistemi1.Models.Kargo
+
+@{
+    ViewData["Title"] = "Kargo Düzenle";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="page-title mb-1">Kargo Düzenle</h2>
+            <p class="text-muted mb-0">
+                Seçili kargo bilgilerini güncelleyebilirsiniz.
+            </p>
+        </div>
+
+        <a asp-action="Index"
+           class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box mb-4">
+
+            <span class="detail-status-label">
+                Düzenleme Formu
+            </span>
+
+            <h4>@Model.TakipNo</h4>
+
+            <p>
+                Bu ekrandan kargo gönderi bilgilerini güncelleyebilirsiniz.
+            </p>
+
+        </div>
+
+        <form asp-action="Edit">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3">
+            </div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label asp-for="TakipNo" class="form-label">
+                        Takip No
+                    </label>
+
+                    <input asp-for="TakipNo"
+                           class="form-control" />
+
+                    <span asp-validation-for="TakipNo"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="KargoTuru" class="form-label">
+                        Kargo Türü
+                    </label>
+
+                    <input asp-for="KargoTuru"
+                           class="form-control" />
+
+                    <span asp-validation-for="KargoTuru"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Agirlik" class="form-label">
+                        Aðýrlýk
+                    </label>
+
+                    <input asp-for="Agirlik"
+                           class="form-control" />
+
+                    <span asp-validation-for="Agirlik"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="GonderimTarihi" class="form-label">
+                        Gönderim Tarihi
+                    </label>
+
+                    <input asp-for="GonderimTarihi"
+                           class="form-control"
+                           type="datetime-local"
+                           value="@Model.GonderimTarihi.ToString("yyyy-MM-ddTHH:mm")" />
+
+                    <span asp-validation-for="GonderimTarihi"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="GondericiId" class="form-label">
+                        Gönderici
+                    </label>
+
+                    <select asp-for="GondericiId"
+                            class="form-select"
+                            asp-items="ViewBag.GondericiId">
+                    </select>
+
+                    <span asp-validation-for="GondericiId"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="AliciId" class="form-label">
+                        Alýcý
+                    </label>
+
+                    <select asp-for="AliciId"
+                            class="form-select"
+                            asp-items="ViewBag.AliciId">
+                    </select>
+
+                    <span asp-validation-for="AliciId"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="CikisSubeId" class="form-label">
+                        Çýkýþ Þubesi
+                    </label>
+
+                    <select asp-for="CikisSubeId"
+                            class="form-select"
+                            asp-items="ViewBag.CikisSubeId">
+                    </select>
+
+                    <span asp-validation-for="CikisSubeId"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="VarisSubeId" class="form-label">
+                        Varýþ Þubesi
+                    </label>
+
+                    <select asp-for="VarisSubeId"
+                            class="form-select"
+                            asp-items="ViewBag.VarisSubeId">
+                    </select>
+
+                    <span asp-validation-for="VarisSubeId"
+                          class="text-danger">
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+
+                <button type="submit"
+                        class="soft-action-btn back-btn border-0">
+                    Güncelle
+                </button>
+
+                <a asp-action="Index"
+                   class="soft-action-btn detail">
+                    Vazgeç
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

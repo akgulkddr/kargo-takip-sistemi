@@ -1,0 +1,111 @@
+@model IEnumerable<KargoTakipSistemi1.Models.Kargo>
+
+@{
+    ViewData["Title"] = "Kargolar";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="page-title mb-1">Kargolar</h2>
+
+            <p class="text-muted mb-0">
+                Sistemde kayýtlý kargolarý görüntüleyin ve yönetin.
+            </p>
+        </div>
+
+        <a asp-action="Create"
+           class="soft-action-btn back-btn">
+            + Yeni Kargo Ekle
+        </a>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Takip No</th>
+                        <th>Tür</th>
+                        <th>Aðýrlýk</th>
+                        <th>Gönderim Tarihi</th>
+                        <th>Gönderici</th>
+                        <th>Alýcý</th>
+                        <th>Çýkýþ Þubesi</th>
+                        <th>Varýþ Þubesi</th>
+                        <th class="text-end">Ýþlemler</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                <span class="soft-badge">
+                                    @item.TakipNo
+                                </span>
+                            </td>
+
+                            <td>@item.KargoTuru</td>
+
+                            <td>@item.Agirlik kg</td>
+
+                            <td>
+                                @item.GonderimTarihi.ToString("dd.MM.yyyy HH:mm")
+                            </td>
+
+                            <td>@item.Gonderici?.AdSoyad</td>
+
+                            <td>@item.Alici?.AdSoyad</td>
+
+                            <td>@item.CikisSube?.SubeAdi</td>
+
+                            <td>@item.VarisSube?.SubeAdi</td>
+
+                            <td class="text-end">
+
+                                <div class="table-action-buttons">
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@item.Id"
+                                       class="soft-action-btn back-btn">
+                                        Düzenle
+                                    </a>
+
+                                    <a asp-action="Details"
+                                       asp-route-id="@item.Id"
+                                       class="soft-action-btn back-btn">
+                                        Detay
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@item.Id"
+                                       class="soft-action-btn delete">
+                                        Sil
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

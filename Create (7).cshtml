@@ -1,0 +1,104 @@
+@model KargoTakipSistemi1.Models.Kargo
+
+@{
+    ViewData["Title"] = "Kargo Detayý";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="page-title mb-1">Kargo Detayý</h2>
+
+            <p class="text-muted mb-0">
+                Kargoya ait detaylý gönderi bilgileri.
+            </p>
+        </div>
+
+        <a asp-action="Index"
+           class="soft-action-btn back-btn">
+            Listeye Dön
+        </a>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="detail-header-box mb-4">
+
+            <span class="detail-status-label">
+                Gönderi Bilgisi
+            </span>
+
+            <h4>@Model.TakipNo</h4>
+
+            <p>
+                Kargonun sistemde kayýtlý tüm detaylarýný görüntüleyebilirsiniz.
+            </p>
+
+        </div>
+
+        <div class="cargo-detail-grid">
+
+            <div>
+                <span>Takip No</span>
+                <strong>@Model.TakipNo</strong>
+            </div>
+
+            <div>
+                <span>Kargo Türü</span>
+                <strong>@Model.KargoTuru</strong>
+            </div>
+
+            <div>
+                <span>Aðýrlýk</span>
+                <strong>@Model.Agirlik kg</strong>
+            </div>
+
+            <div>
+                <span>Gönderim Tarihi</span>
+                <strong>@Model.GonderimTarihi.ToString("dd.MM.yyyy HH:mm")</strong>
+            </div>
+
+            <div>
+                <span>Gönderici</span>
+                <strong>@Model.Gonderici?.AdSoyad</strong>
+            </div>
+
+            <div>
+                <span>Alýcý</span>
+                <strong>@Model.Alici?.AdSoyad</strong>
+            </div>
+
+            <div>
+                <span>Çýkýþ Þubesi</span>
+                <strong>@Model.CikisSube?.SubeAdi</strong>
+            </div>
+
+            <div>
+                <span>Varýþ Þubesi</span>
+                <strong>@Model.VarisSube?.SubeAdi</strong>
+            </div>
+
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model?.Id"
+               class="soft-action-btn back-btn">
+                Düzenle
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@Model?.Id"
+               class="soft-action-btn delete">
+                Sil
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

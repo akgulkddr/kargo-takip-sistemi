@@ -1,0 +1,144 @@
+﻿@model KargoTakipSistemi1.Models.KargoTakipViewModel
+
+@{
+    ViewData["Title"] = "Kargo Takip";
+
+    var kargo = Model.Kargo;
+
+    var sonDurum = kargo?.DurumKayitlari?
+        .OrderByDescending(x => x.Tarih)
+        .FirstOrDefault();
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1">Kargo Takip Sonucu</h2>
+        </div>
+
+        <a asp-controller="Home" asp-action="Index" class="soft-action-btn back-btn">
+            Ana Sayfaya Dön
+        </a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Mesaj))
+    {
+        <div class="alert alert-warning content-card">
+            @Model.Mesaj
+        </div>
+    }
+
+    @if (kargo != null)
+    {
+        <div class="content-card mb-4">
+
+            <div class="cargo-result-header">
+                <span class="cargo-status-pill">
+                    @(sonDurum?.Durum ?? "Durum Bilgisi Yok")
+                </span>
+
+                <p class="text-muted mb-0">
+                    Takip No:
+                    <strong>@kargo.TakipNo</strong>
+                </p>
+            </div>
+
+            @{
+                var durumlar = new List<string>
+                {
+                "Kargo Alındı",
+                "Çıkış Şubesinde",
+                "Transfer Merkezinde",
+                "Varış Şubesinde",
+                "Dağıtıma Çıktı",
+                "Teslim Edildi"
+                };
+
+                var sonDurumAdi = sonDurum?.Durum ?? "";
+                var aktifIndex = durumlar.IndexOf(sonDurumAdi);
+
+                var progressPercent = aktifIndex <= 0
+                ? 0
+                : (aktifIndex * 100) / (durumlar.Count - 1);
+            }
+
+            <div class="horizontal-timeline"
+                 style="--progress: calc((84% * @progressPercent) / 100);">
+                @for (int i = 0; i < durumlar.Count; i++)
+                {
+                    var aktifMi = i <= aktifIndex;
+
+                    <div class="timeline-step @(aktifMi ? "active" : "")">
+                        <div class="timeline-dot-horizontal"></div>
+                        <span>@durumlar[i]</span>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+        <div class="content-card">
+
+            <h4 class="mb-3">Gönderi Detayları</h4>
+
+            <div class="cargo-route-card mb-4">
+
+                <div class="route-point">
+                    <div class="route-icon start"></div>
+                    <div>
+                        <span>Çıkış Şubesi</span>
+                        <strong>@kargo.CikisSube?.SubeAdi</strong>
+                    </div>
+                </div>
+
+                <div class="route-divider"></div>
+
+                <div class="route-point">
+                    <div class="route-icon end"></div>
+                    <div>
+                        <span>Varış Şubesi</span>
+                        <strong>@kargo.VarisSube?.SubeAdi</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cargo-detail-grid">
+
+                <div>
+                    <span>Kargo Türü</span>
+                    <strong>@kargo.KargoTuru</strong>
+                </div>
+
+                <div>
+                    <span>Ağırlık</span>
+                    <strong>@kargo.Agirlik kg</strong>
+                </div>
+
+                <div>
+                    <span>Gönderim Tarihi</span>
+                    <strong>@kargo.GonderimTarihi.ToString("dd.MM.yyyy HH:mm")</strong>
+                </div>
+
+                <div>
+                    <span>Gönderici</span>
+                    <strong>@kargo.Gonderici?.AdSoyad</strong>
+                </div>
+
+                <div>
+                    <span>Alıcı</span>
+                    <strong>@kargo.Alici?.AdSoyad</strong>
+                </div>
+
+                <div>
+                    <span>Takip Numarası</span>
+                    <strong>@kargo.TakipNo</strong>
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>

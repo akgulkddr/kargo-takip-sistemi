@@ -1,0 +1,82 @@
+﻿@model IEnumerable<KargoTakipSistemi1.Models.DurumKaydi>
+
+@{
+    ViewData["Title"] = "Durum Kayıtları";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1">Durum Kayıtları</h2>
+            <p class="text-muted mb-0">Kargolara ait hareket ve durum geçmişini görüntüleyin ve yönetin.</p>
+        </div>
+
+        <a asp-action="Create" class="soft-action-btn add-btn">
+            + Yeni Durum Ekle
+        </a>
+    </div>
+
+    <div class="content-card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Takip No</th>
+                        <th>Durum</th>
+                       
+                        <th>Tarih</th>
+                        <th class="text-end">İşlemler</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.OrderByDescending(x => x.Tarih))
+                    {
+                        <tr>
+                            <td>
+                                <span class="soft-badge">
+                                    @item.Kargo?.TakipNo
+                                </span>
+                            </td>
+
+                            <td>
+                                @{
+                                    var durumClass = "durum-default";
+
+                                    if (item.Durum.Contains("Teslim"))
+                                        durumClass = "durum-green";
+                                    else if (item.Durum.Contains("Dağıtım"))
+                                        durumClass = "durum-blue";
+                                    else if (item.Durum.Contains("Transfer"))
+                                        durumClass = "durum-orange";
+                                }
+
+                                <span class="durum-pill @durumClass">
+                                    @item.Durum
+                                </span>
+                            </td>
+                           
+                            <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="soft-action-btn edit">
+                                    Düzenle
+                                </a>
+
+                                <a asp-action="Details" asp-route-id="@item.Id" class="soft-action-btn detail">
+                                    Detay
+                                </a>
+
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="soft-action-btn delete">
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

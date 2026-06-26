@@ -1,0 +1,123 @@
+﻿@model List<KargoTakipSistemi1.Models.DashboardKart>
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="container mt-4">
+
+    <section class="home-hero-panel mb-5">
+        <div>
+            <span class="home-hero-badge">Kargo Yönetim Paneli</span>
+
+            <h1>Kargo Takip Sistemi</h1>
+
+            <p>
+                Şube, müşteri, personel, kargo ve durum kayıtlarını tek panelden
+                kolayca yönetin.
+            </p>
+
+            <div class="home-hero-actions">
+                <a asp-controller="Kargolar" asp-action="Create" class="soft-action-btn back-btn">
+                    + Yeni Kargo Ekle
+                </a>
+
+                <a asp-controller="DurumKayitlari" asp-action="Index" class="soft-action-btn detail">
+                    Durum Kayıtları
+                </a>
+            </div>
+        </div>
+
+        <div class="home-hero-visual">
+            <img src="~/NewFolder1/cargo-hero.png"
+                 alt="Kargo Görseli" />
+        </div>
+    </section>
+
+   @*  <section class="row g-4 mb-5">
+
+        @foreach (var kart in Model)
+        {
+            <div class="col-md-3">
+                <div class="dashboard-card @kart.CssClass">
+                    <div class="dashboard-icon">@kart.Ikon</div>
+                    <h5>@kart.Baslik</h5>
+                    <div class="dashboard-number">@kart.Sayi</div>
+                    <p class="mb-0">@kart.Aciklama</p>
+                </div>
+            </div>
+        }
+
+    </section> *@
+
+    <section class="home-quick-actions mb-5">
+
+        <a asp-controller="Kargolar" asp-action="Index" class="quick-action-card">
+            <span>📦</span>
+            <strong>Kargolar</strong>
+            <small>Kargo kayıtlarını yönet</small>
+        </a>
+
+        <a asp-controller="Musteriler" asp-action="Index" class="quick-action-card">
+            <span>👥</span>
+            <strong>Müşteriler</strong>
+            <small>Müşteri bilgilerini görüntüle</small>
+        </a>
+
+        <a asp-controller="Subeler" asp-action="Index" class="quick-action-card">
+            <span>🏢</span>
+            <strong>Şubeler</strong>
+            <small>Şube kayıtlarını incele</small>
+        </a>
+
+        <a asp-controller="Personeller" asp-action="Index" class="quick-action-card">
+            <span>👤</span>
+            <strong>Personeller</strong>
+            <small>Personel işlemlerini yönet</small>
+        </a>
+
+    </section>
+
+    <section class="content-card tracking-home-card">
+        <div class="row align-items-center g-4">
+
+            <div class="col-md-5">
+                <div class="tracking-home-info">
+                    <div class="tracking-home-icon">
+                        <img src="~/NewFolder1/cargo-track.png"
+                             alt="Kargo Takip"
+                             class="tracking-icon-img" />
+                    </div>
+
+                    <div>
+                        <h4>Kargo Takip</h4>
+                        <p>
+                            Takip numarası ile kargonuzun güncel durumunu sorgulayabilirsiniz.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <form asp-controller="Kargolar" asp-action="Takip" method="get" class="row g-3">
+                    <div class="col-md-8">
+                        <input type="text"
+                               name="takipNo"
+                               class="form-control form-control-lg"
+                               placeholder="Örn: TR1001" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <button type="submit" class="soft-action-btn back-btn w-100 border-0">
+                            Sorgula
+                        </button>
+                    </div>
+                </form>
+
+                
+            </div>
+
+        </div>
+    </section>
+
+</div>
