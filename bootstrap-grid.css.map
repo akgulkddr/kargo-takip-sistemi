@@ -1,0 +1,115 @@
+﻿const ilceler = {
+
+    "Adana": ["Seyhan", "Çukurova", "Yüreğir"],
+    "Adıyaman": ["Merkez", "Kahta", "Besni"],
+    "Afyonkarahisar": ["Merkez", "Sandıklı", "Dinar"],
+    "Ağrı": ["Merkez", "Patnos", "Doğubayazıt"],
+    "Amasya": ["Merkez", "Merzifon", "Suluova"],
+    "Ankara": ["Çankaya", "Keçiören", "Etimesgut"],
+    "Antalya": ["Muratpaşa", "Kepez", "Alanya"],
+    "Artvin": ["Merkez", "Hopa", "Borçka"],
+    "Aydın": ["Efeler", "Nazilli", "Kuşadası"],
+    "Balıkesir": ["Karesi", "Bandırma", "Edremit"],
+    "Bilecik": ["Merkez", "Bozüyük", "Osmaneli"],
+    "Bingöl": ["Merkez", "Genç", "Solhan"],
+    "Bitlis": ["Merkez", "Tatvan", "Ahlat"],
+    "Bolu": ["Merkez", "Gerede", "Mudurnu"],
+    "Burdur": ["Merkez", "Bucak", "Gölhisar"],
+    "Bursa": ["Osmangazi", "Nilüfer", "Yıldırım"],
+    "Çanakkale": ["Merkez", "Biga", "Gelibolu"],
+    "Çankırı": ["Merkez", "Ilgaz", "Çerkeş"],
+    "Çorum": ["Merkez", "Sungurlu", "Osmancık"],
+    "Denizli": ["Pamukkale", "Merkezefendi", "Çivril"],
+    "Diyarbakır": ["Bağlar", "Kayapınar", "Sur"],
+    "Edirne": ["Merkez", "Keşan", "Uzunköprü"],
+    "Elazığ": ["Merkez", "Kovancılar", "Karakoçan"],
+    "Erzincan": ["Merkez", "Tercan", "Üzümlü"],
+    "Erzurum": ["Yakutiye", "Palandöken", "Aziziye"],
+    "Eskişehir": ["Odunpazarı", "Tepebaşı", "Sivrihisar"],
+    "Gaziantep": ["Şahinbey", "Şehitkamil", "Nizip"],
+    "Giresun": ["Merkez", "Bulancak", "Espiye"],
+    "Gümüşhane": ["Merkez", "Kelkit", "Torul"],
+    "Hakkari": ["Merkez", "Yüksekova", "Şemdinli"],
+    "Hatay": ["Antakya", "İskenderun", "Dörtyol"],
+    "Isparta": ["Merkez", "Yalvaç", "Eğirdir"],
+    "Mersin": ["Yenişehir", "Mezitli", "Tarsus"],
+    "İstanbul": ["Kadıköy", "Beşiktaş", "Üsküdar"],
+    "İzmir": ["Konak", "Karşıyaka", "Bornova"],
+    "Kars": ["Merkez", "Sarıkamış", "Kağızman"],
+    "Kastamonu": ["Merkez", "Tosya", "Taşköprü"],
+    "Kayseri": ["Melikgazi", "Kocasinan", "Talas"],
+    "Kırklareli": ["Merkez", "Lüleburgaz", "Babaeski"],
+    "Kırşehir": ["Merkez", "Mucur", "Kaman"],
+    "Kocaeli": ["İzmit", "Gebze", "Darıca"],
+    "Konya": ["Selçuklu", "Meram", "Karatay"],
+    "Kütahya": ["Merkez", "Tavşanlı", "Simav"],
+    "Malatya": ["Battalgazi", "Yeşilyurt", "Doğanşehir"],
+    "Manisa": ["Şehzadeler", "Yunusemre", "Akhisar"],
+    "Kahramanmaraş": ["Dulkadiroğlu", "Onikişubat", "Elbistan"],
+    "Mardin": ["Artuklu", "Kızıltepe", "Nusaybin"],
+    "Muğla": ["Menteşe", "Bodrum", "Fethiye"],
+    "Muş": ["Merkez", "Bulanık", "Malazgirt"],
+    "Nevşehir": ["Merkez", "Ürgüp", "Avanos"],
+    "Niğde": ["Merkez", "Bor", "Ulukışla"],
+    "Ordu": ["Altınordu", "Fatsa", "Ünye"],
+    "Rize": ["Merkez", "Çayeli", "Ardeşen"],
+    "Sakarya": ["Adapazarı", "Serdivan", "Akyazı"],
+    "Samsun": ["İlkadım", "Atakum", "Bafra"],
+    "Siirt": ["Merkez", "Kurtalan", "Baykan"],
+    "Sinop": ["Merkez", "Boyabat", "Gerze"],
+    "Sivas": ["Merkez", "Şarkışla", "Suşehri"],
+    "Tekirdağ": ["Süleymanpaşa", "Çorlu", "Çerkezköy"],
+    "Tokat": ["Merkez", "Erbaa", "Turhal"],
+    "Trabzon": ["Ortahisar", "Akçaabat", "Araklı"],
+    "Tunceli": ["Merkez", "Pertek", "Mazgirt"],
+    "Şanlıurfa": ["Haliliye", "Eyyübiye", "Siverek"],
+    "Uşak": ["Merkez", "Banaz", "Eşme"],
+    "Van": ["İpekyolu", "Erciş", "Tuşba"],
+    "Yozgat": ["Merkez", "Sorgun", "Yerköy"],
+    "Zonguldak": ["Merkez", "Ereğli", "Çaycuma"],
+    "Aksaray": ["Merkez", "Ortaköy", "Eskil"],
+    "Bayburt": ["Merkez", "Demirözü", "Aydıntepe"],
+    "Karaman": ["Merkez", "Ermenek", "Ayrancı"],
+    "Kırıkkale": ["Merkez", "Yahşihan", "Keskin"],
+    "Batman": ["Merkez", "Kozluk", "Beşiri"],
+    "Şırnak": ["Merkez", "Cizre", "Silopi"],
+    "Bartın": ["Merkez", "Amasra", "Kurucaşile"],
+    "Ardahan": ["Merkez", "Göle", "Posof"],
+    "Iğdır": ["Merkez", "Tuzluca", "Aralık"],
+    "Yalova": ["Merkez", "Çınarcık", "Altınova"],
+    "Karabük": ["Merkez", "Safranbolu", "Eskipazar"],
+    "Kilis": ["Merkez", "Musabeyli", "Elbeyli"],
+    "Osmaniye": ["Merkez", "Kadirli", "Düziçi"],
+    "Düzce": ["Merkez", "Akçakoca", "Cumayeri"]
+};
+
+function ilceDoldur() {
+
+    const sehir = document.getElementById("sehirSelect").value;
+
+    const ilceSelect = document.getElementById("ilceSelect");
+
+    ilceSelect.innerHTML = "";
+
+    if (!sehir) {
+
+        ilceSelect.innerHTML =
+            '<option value="">Önce şehir seçiniz</option>';
+
+        return;
+    }
+
+    ilceSelect.innerHTML =
+        '<option value="">İlçe seçiniz</option>';
+
+    ilceler[sehir].forEach(function (ilce) {
+
+        const option = document.createElement("option");
+
+        option.value = ilce;
+
+        option.textContent = ilce;
+
+        ilceSelect.appendChild(option);
+    });
+}
